@@ -55,18 +55,18 @@ func doneRun(cmd *cobra.Command, args []string) {
 		log.Printf("%v\n", err)
 	}
 
-	i, err := strconv.Atoi(args[0])
+	index, err := strconv.Atoi(args[0])
 	if err != nil {
 		log.Fatalln(args[0], "is not a valid todo index", err)
 	}
-	if i > 0 && i < len(todoList) {
-		todoList[i-1].Done = true
-		fmt.Printf("'%s' %v\n", todoList[i-1].Task, "marked done")
+	if index > 0 && index < len(todoList) {
+		todoList[index-1].Done = true
+		fmt.Printf("'%s' %v\n", todoList[index-1].Task, "marked done")
 		err = todo.SaveTasks(todoList)
 		if err != nil {
 			log.Fatalf("Save items : %v\ns", err)
 		}
 	} else {
-		log.Println(i, "index does not match match any entry")
+		log.Println(index, "index does not match match any entry")
 	}
 }
